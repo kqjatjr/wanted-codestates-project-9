@@ -9,7 +9,10 @@ const Home = () => {
         <p className={styles.titleB}>KartRider RECORD</p>
       </div>
       <div className={styles.inputContainer}>
-        <input />
+        <input
+          className={styles.serchInput}
+          placeholder="유저 닉네임을 입력후 Enter를 눌러주세요"
+        />
       </div>
       <img
         className={styles.dao}

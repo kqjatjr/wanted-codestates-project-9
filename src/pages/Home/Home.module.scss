@@ -29,6 +29,7 @@
   background-image: url("https://tmi.nexon.com/img/main_bg1.png");
   justify-content: center;
   height: 655px;
+  min-width: 1300px;
   position: relative;
   background-size: cover;
   background-position: 50%;
@@ -54,6 +55,30 @@
   }
 
   .inputContainer {
+    min-width: 350px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 67px;
+    width: 30vw;
+    z-index: 99px;
+    border: 5px solid;
+    margin: 100px auto;
+    border-radius: 33.5px;
+    border-color: white;
+    padding: 10px;
+
+    .serchInput {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 20px;
+      outline: none;
+    }
+    ::placeholder {
+      color: white;
+    }
   }
 
   .bazzi {
