@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# 원티드 프리온보딩 기업과제 - 넥슨코리아
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 제작 구현 리스트
 
-## Available Scripts
+### 메인 페이지
 
-In the project directory, you can run:
+- [ ] 유저의 아이디를 검색하고 해당 유저의 전적을 검색할 수 있어야 한다.
+- [ ] 메뉴바의 홈, 랭킹, 카트(x), 트랙 버튼을 누르면 해당 이름에 맞는 페이지가 렌더링 되어야 한다.
+  - [ ] 전적 검색은 어디에도 속해 있지 않다.
+  - [ ] 메뉴바의 홈을 제외한 랭킹, 트랙에는 닉네임 검색하기 기능이 추가되어야 한다.
+- [ ] 헤더 좌측에는 카드라이더 아이콘과 TMI 아이콘 우측에는 카
 
-### `npm start`
+### 전적 검색 페이지
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [ ] 해당 유저 정보는 아이디, 레벨이 표시되어야 한다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+````
+   {
+       "accessId": "유저고유ID",
+       "name": "유저이름",
+       "level": 레벨
+   }
+   ```
+````
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [ ] 종합전적, 승률, 완주율, 리타이어율 이 표시되어야 한다.
+- [ ] 순위변동 추이가 그래프로 표시되어야 한다.
+- [ ] 전적은 통합, 매우빠름, 무한 부스터 탭으로 나뉘어져 있다.
+- [ ] 전적리스트에서 리타이어 제외 토글버튼을 누르면 리타이어는 제외한 전적이 나열되어야 한다.
+- [ ] 하단에는 최근 게임한 전적 기록들(시간, 순위, 트랙, 카트, 완주시간)이 나열되어야 한다.
