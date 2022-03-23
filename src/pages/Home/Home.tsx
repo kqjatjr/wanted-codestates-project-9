@@ -1,31 +1,63 @@
-import Menu from "../../components/Menu/Menu";
+import { skipToken } from "@reduxjs/toolkit/dist/query";
+import React, { useEffect, useState } from "react";
+import {
+  Outlet,
+  Route,
+  Routes,
+  useMatch,
+  useNavigate,
+  useResolvedPath,
+} from "react-router-dom";
+import Main from "src/components/Main/Main";
+import Menu from "src/components/Menu/Menu";
+import Profile from "../Profile/Profile";
 import styles from "./Home.module.scss";
 
 const Home = () => {
+  const [nickname, setNickname] = useState<string>();
+  const [currMenu, setCurrMenu] = useState("Home");
+
+  let resolved = useResolvedPath("/");
+  let match = useMatch({ path: resolved.pathname, end: true });
+
+  const navigate = useNavigate();
+
+  const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNickname(e.target.value);
+  };
+
+  const handleSearchUser = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === "Enter") {
+      if (nickname?.trim().length) {
+        setNickname("");
+        setCurrMenu("");
+        navigate(`/user/${nickname}`);
+      } else {
+        alert("닉네임을 입력해 주세요!");
+      }
+    }
+  };
+
   return (
     <div className={styles.container}>
-      <Menu />
-      <div className={styles.searchContainer}>
-        <p className={styles.titleB}>KartRider RECORD</p>
-      </div>
-      <div className={styles.inputContainer}>
-        <input
-          className={styles.serchInput}
-          placeholder="유저 닉네임을 입력후 Enter를 눌러주세요"
+      <Menu
+        currMenu={currMenu}
+        onChangeMenu={setCurrMenu}
+        onChangeInputValue={handleChangeInputValue}
+        onSearchUser={handleSearchUser}
+      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Main
+              onChangeInputValue={handleChangeInputValue}
+              onSearchUser={handleSearchUser}
+            />
+          }
         />
-      </div>
-      <img
-        className={styles.dao}
-        src="	https://tmi.nexon.com/img/assets/covid_right.png"
-        alt="다오"
-      />
-      <img
-        className={styles.bazzi}
-        src="https://tmi.nexon.com/img/assets/covid_left.png"
-        alt="배찌"
-      />
-      <span className={styles.leftArrow} />
-      <span className={styles.rightArrow} />
+        <Route path="/user/:nickname" element={<Profile />} />
+      </Routes>
     </div>
   );
 };
