@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { TUserMatches } from "src/types/api";
+import { TAllMatches, TTargetMatch, TUserMatches } from "src/types/api";
 
 type TUser = {
   accessId: string;
@@ -28,6 +28,13 @@ export const userProfileApi = createApi({
     getUserMatchesList: builder.query<TUserMatches, string>({
       query: (access_id) =>
         `/users/${access_id}/matches?start_date=2022-03-01&end_date=2022-03-31&limit=100`,
+    }),
+    getAllMatchesList: builder.query<TAllMatches, undefined>({
+      query: () =>
+        "/matches/all?start_date=2022-03-01&end_date=2022-03-31&limit=200",
+    }),
+    getTargetMatch: builder.query<TTargetMatch, string>({
+      query: (match_id) => `/matches/${match_id}`,
     }),
   }),
 });
