@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { TUserMatches } from "src/types/api";
 
 type TUser = {
   accessId: string;
@@ -24,7 +25,7 @@ export const userProfileApi = createApi({
     getUserAccessId: builder.query<TUser, string>({
       query: (nickname) => `/users/nickname/${nickname}`,
     }),
-    getUserMatchesList: builder.query({
+    getUserMatchesList: builder.query<TUserMatches, string>({
       query: (access_id) =>
         `/users/${access_id}/matches?start_date=2022-03-01&end_date=2022-03-31&limit=100`,
     }),
