@@ -31,7 +31,6 @@ const Home = () => {
     <div className={styles.container}>
       <Menu
         currMenu={currMenu}
-        onChangeMenu={setCurrMenu}
         onChangeInputValue={handleChangeInputValue}
         onSearchUser={handleSearchUser}
       />

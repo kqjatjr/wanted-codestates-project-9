@@ -1,4 +1,3 @@
-import { useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 import CustomLink from "../CustomLink/CustomLink";
 import styles from "./Menu.module.scss";
 
@@ -6,17 +5,11 @@ const menuList: string[] = ["Home", "Rank", "Track"];
 
 type TProp = {
   currMenu: string;
-  onChangeMenu: React.Dispatch<React.SetStateAction<string>>;
   onSearchUser: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onChangeInputValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Menu = ({
-  currMenu,
-  onChangeMenu,
-  onSearchUser,
-  onChangeInputValue,
-}: TProp) => {
+const Menu = ({ currMenu, onSearchUser, onChangeInputValue }: TProp) => {
   return (
     <div className={styles.container}>
       <ul className={styles.menuList}>
