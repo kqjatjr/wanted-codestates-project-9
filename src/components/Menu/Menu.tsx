@@ -31,20 +31,6 @@ const Menu = ({
 
           return (
             <li key={name}>
-              {/* <div
-                onClick={() => onClickMenu(name)}
-                className={styles.menuName}
-                style={
-                  currMenu === name
-                    ? {
-                        borderBottom: "4px solid #fff",
-                        color: "#fff",
-                      }
-                    : {}
-                }
-              >
-                {name}
-              </div> */}
               <CustomLink to={`/` + name}>{name}</CustomLink>
             </li>
           );
