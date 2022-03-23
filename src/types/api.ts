@@ -62,22 +62,8 @@ export type TAllMatches = {
 };
 
 export type TTeam = {
-  accountNo: string;
-  characterName: string;
-  character: string;
-  kart: string;
-  license: string;
-  pet: string;
-  flyingPet: string;
-  partsEngine: string;
-  partsHandle: string;
-  partsWheel: string;
-  partsKit: string;
-  rankinggrade2: string;
-  matchRank: string;
-  matchRetired: string;
-  matchWin: string;
-  matchTime: string;
+  teamId: string;
+  players: TPlayer[];
 };
 
 export type TTargetMatch = {
