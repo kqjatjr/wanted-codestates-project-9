@@ -1,13 +1,5 @@
-import { skipToken } from "@reduxjs/toolkit/dist/query";
-import React, { useEffect, useState } from "react";
-import {
-  Outlet,
-  Route,
-  Routes,
-  useMatch,
-  useNavigate,
-  useResolvedPath,
-} from "react-router-dom";
+import React, { useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Main from "src/components/Main/Main";
 import Menu from "src/components/Menu/Menu";
 import Profile from "../Profile/Profile";
@@ -16,9 +8,6 @@ import styles from "./Home.module.scss";
 const Home = () => {
   const [nickname, setNickname] = useState<string>();
   const [currMenu, setCurrMenu] = useState("Home");
-
-  let resolved = useResolvedPath("/");
-  let match = useMatch({ path: resolved.pathname, end: true });
 
   const navigate = useNavigate();
 
