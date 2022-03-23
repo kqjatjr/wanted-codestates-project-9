@@ -1,4 +1,4 @@
-export const gameType = [
+const data = [
   {
     id: "7ca6fd44026a2c8f5d939b60aa56b4b1714b9cc2355ec5e317154d4cf0675da0",
     name: "아이템 개인전",
@@ -92,3 +92,7 @@ export const gameType = [
     name: "1 vs 1 모드",
   },
 ];
+
+export const gameType = data.reduce((acc, curr) => {
+  return { ...acc, [curr.id]: curr.name };
+}, {} as Record<string, string>);

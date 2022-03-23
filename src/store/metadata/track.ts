@@ -1,4 +1,4 @@
-export const track = [
+const data = [
   {
     id: "c93843288b6c038f11328c0e4a4dae0663a94154242059e1a62f73503e84b104",
     name: "빌리지 두개의 관문",
@@ -1336,3 +1336,7 @@ export const track = [
     name: "어비스 배틀 콜로세움",
   },
 ];
+
+export const track = data.reduce((acc, curr) => {
+  return { ...acc, [curr.id]: curr.name };
+}, {} as Record<string, string>);

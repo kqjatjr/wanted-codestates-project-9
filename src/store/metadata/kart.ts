@@ -1,4 +1,4 @@
-export const Kart = [
+const data = [
   {
     id: "4a3d34d9958d54ab218513e2dc406a6a7bc30e529292895475a11a986550b437",
     name: "골드 드래곤 HT",
@@ -3824,3 +3824,7 @@ export const Kart = [
     name: "골든샤크 9",
   },
 ];
+
+export const Kart = data.reduce((acc, curr) => {
+  return { ...acc, [curr.id]: curr.name };
+}, {} as Record<string, string>);

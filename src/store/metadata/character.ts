@@ -1,4 +1,4 @@
-export const character = [
+const data = [
   {
     id: "4c139477f1eef41ec9a1c7c50319c6f391abb074fa44242eb7a143007e7f7720",
     name: "황금우비 배찌",
@@ -1204,3 +1204,7 @@ export const character = [
     name: "윤다오",
   },
 ];
+
+export const character = data.reduce((acc, curr) => {
+  return { ...acc, [curr.id]: curr.name };
+}, {} as Record<string, string>);
