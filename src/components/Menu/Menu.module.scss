@@ -1,31 +1,64 @@
 .container {
-  width: 1000px;
+  width: 100%;
   margin: 0 auto;
   height: 55px;
+  position: absolute;
+  padding: 0 100px;
+  z-index: 1;
+  top: 20;
+  background-color: transparent;
+
   .menuList {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
+    align-items: center;
+
     li {
+      display: flex;
       position: relative;
       box-sizing: border-box;
-      width: 120px;
       height: 55px;
+      align-items: center;
+
+      .inputContainer {
+        border: 2px solid white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin-left: 650px;
+
+        .input {
+          background-color: transparent;
+          width: 240px;
+          outline: none;
+          border: none;
+          color: white;
+          box-sizing: border-box;
+          display: flex;
+          height: 20px;
+          font-weight: bold;
+          letter-spacing: -1px;
+
+          &:placeholder {
+            color: white;
+          }
+        }
+      }
 
       .menuName {
-        width: 80px;
+        width: 120px;
         box-sizing: border-box;
         height: 55px;
         display: flex;
+        margin-right: 10px;
         justify-content: center;
         align-items: center;
         font-weight: bold;
-
         letter-spacing: -1px;
-        color: white;
         &:hover {
           border-bottom: 4px solid #fff;
+          color: #fff;
           transition: all 0.15s ease-in-out;
         }
       }
