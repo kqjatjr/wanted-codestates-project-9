@@ -1,5 +1,5 @@
 export const fetchData = (resource: string) => {
-  return fetch(`/api//matches/${resource}`, {
+  return fetch(`/api/matches/${resource}`, {
     method: "GET",
     headers: {
       Authorization:
