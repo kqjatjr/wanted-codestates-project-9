@@ -13,7 +13,9 @@ export const userProfileApi = createApi({
   reducerPath: USER_PROFILE,
   keepUnusedDataFor: 300,
   baseQuery: fetchBaseQuery({
-    baseUrl: "/api",
+    baseUrl:
+      "https://corsanywhere12345.herokuapp.com/https://api.nexon.co.kr/kart/v1.0",
+
     prepareHeaders: (headers) => {
       headers.set(
         "Authorization",
