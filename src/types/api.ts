@@ -1,3 +1,8 @@
+export enum MatchResult {
+  Win = "1",
+  Lose = "0",
+}
+
 export type TPlayer = {
   accountNo: string;
   characterName: string;
@@ -13,7 +18,7 @@ export type TPlayer = {
   rankinggrade2: string;
   matchRank: string;
   matchRetired: string;
-  matchWin: string;
+  matchWin: MatchResult;
   matchTime: string;
 };
 
@@ -56,9 +61,13 @@ export type TUserMatches = {
   nickName: string;
 };
 
-export type TAllMatches = {
+export type TTypeMatchList = {
   matchType: string;
   matches: string[];
+};
+
+export type TAllMatches = {
+  matches: TTypeMatchList[];
 };
 
 export type TTeam = {
@@ -66,7 +75,7 @@ export type TTeam = {
   players: TPlayer[];
 };
 
-export type TTargetMatch = {
+export type TTargetMatchBase = {
   channelName: string;
   startTime: string;
   endTime: string;
@@ -76,5 +85,22 @@ export type TTargetMatch = {
   matchType: string;
   playTime: number;
   trackId: string;
-  teams: TTeam[] | TPlayer[];
 };
+
+export type TTargetMatchTeam = TTargetMatchBase & {
+  teams: TTeam[];
+};
+
+export type TTargetMatchSolo = TTargetMatchBase & {
+  players: TPlayer[];
+};
+
+export type TTargetMatch = TTargetMatchTeam | TTargetMatchSolo;
+
+export const isTeamMatch = (
+  targetMatch: TTargetMatch,
+): targetMatch is TTargetMatchTeam => "teams" in targetMatch;
+
+export const isSoloMatch = (
+  targetMatch: TTargetMatch,
+): targetMatch is TTargetMatchSolo => "players" in targetMatch;
