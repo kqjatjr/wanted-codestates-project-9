@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userProfileApi } from "./query/userProfileApi";
+import matchSlice from "./slice/matchSlice";
 
 export const store = configureStore({
   reducer: {
+    [matchSlice.name]: matchSlice.reducer,
     [userProfileApi.reducerPath]: userProfileApi.reducer,
   },
   devTools: true,
