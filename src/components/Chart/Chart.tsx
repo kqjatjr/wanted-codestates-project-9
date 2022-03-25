@@ -12,7 +12,7 @@ const MatchChart = ({ nickname }: { nickname: string | undefined }) => {
   const [data, setData] = useState<Props>();
 
   const { data: userProfile } = useGetUserAccessIdQuery(nickname ?? skipToken);
-  const { data: matchData } = useGetUserMatchesListQuery(
+  const { data: matchData, isLoading } = useGetUserMatchesListQuery(
     userProfile ? userProfile.accessId : skipToken,
   );
 
@@ -34,6 +34,9 @@ const MatchChart = ({ nickname }: { nickname: string | undefined }) => {
     .map((item) => {
       if (item.player.matchRank === "99") {
         return 9;
+      }
+      if (item.player.matchRank === "") {
+        return 10;
       }
       return Number(item.player.matchRank);
     });
@@ -75,6 +78,9 @@ const MatchChart = ({ nickname }: { nickname: string | undefined }) => {
               if (value === 9) {
                 return "R";
               }
+              if (value === 10) {
+                return "X";
+              }
               return String(value);
             },
           },
@@ -96,16 +102,16 @@ const MatchChart = ({ nickname }: { nickname: string | undefined }) => {
             show: false,
             reversed: true,
             tickAmount: 1,
-            min: 1,
-            max: 9,
+            min: 0,
+            max: 10,
             labels: {
               minWidth: 20,
               formatter: (value) => {
-                if (value === 1) {
-                  return "";
-                }
                 if (value === 9) {
                   return "리타이어";
+                }
+                if (value === 10) {
+                  return "탈주";
                 }
                 return value.toFixed(0);
               },
@@ -115,6 +121,10 @@ const MatchChart = ({ nickname }: { nickname: string | undefined }) => {
       });
     }
   }, []);
+
+  if (isLoading) {
+    return <div>ㅁㄴㅇㄹ</div>;
+  }
 
   return (
     <div className={styles.chartContainer}>
