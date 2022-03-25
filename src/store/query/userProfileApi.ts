@@ -11,6 +11,7 @@ const USER_PROFILE = "userProfileApi";
 
 export const userProfileApi = createApi({
   reducerPath: USER_PROFILE,
+  keepUnusedDataFor: 300,
   baseQuery: fetchBaseQuery({
     baseUrl: "/api",
     prepareHeaders: (headers) => {
@@ -29,15 +30,15 @@ export const userProfileApi = createApi({
       query: (access_id) =>
         `/users/${access_id}/matches?start_date=2022-03-01&end_date=2022-03-31&limit=100`,
     }),
-    getAllMatchesList: builder.query<TAllMatches, undefined>({
-      query: () =>
-        "/matches/all?start_date=2022-03-01&end_date=2022-03-31&limit=200",
-    }),
-    getTargetMatch: builder.query<TTargetMatch, string>({
-      query: (match_id) => `/matches/${match_id}`,
+    getAllMatchesList: builder.query<TAllMatches, string>({
+      query: (matchType) =>
+        `/matches/all?start_date=2022-03-01&end_date=2022-03-31&limit=200&match_types=${matchType}`,
     }),
   }),
 });
 
-export const { useGetUserAccessIdQuery, useGetUserMatchesListQuery } =
-  userProfileApi;
+export const {
+  useGetUserAccessIdQuery,
+  useGetUserMatchesListQuery,
+  useGetAllMatchesListQuery,
+} = userProfileApi;
