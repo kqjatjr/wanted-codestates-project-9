@@ -1,0 +1,158 @@
+@keyframes dot {
+  0% {
+    transform: scale(0);
+  }
+  35% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.container {
+  background-color: rgb(9, 106, 252);
+  min-height: calc(100vh - 48px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 65px 100px 100px 100px;
+  align-items: center;
+
+  .title {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 50px;
+  }
+
+  .dataInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    p {
+      margin: 5px;
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+    }
+  }
+
+  .filterContainer {
+    display: flex;
+    padding: 10px 0;
+    button {
+      margin-right: 10px;
+      width: 150px;
+      height: 50px;
+      border-radius: 10px;
+      border: 4px solid rgb(17, 57, 235);
+      font-size: 15px;
+      font-weight: bold;
+    }
+  }
+
+  a {
+    text-decoration-line: none;
+    color: black;
+  }
+
+  .rankContainer {
+    display: flex;
+    flex-direction: column;
+    .topThreeContainer {
+      display: flex;
+      justify-content: space-between;
+      .topThree {
+        background-color: white;
+        width: 300px;
+        display: flex;
+        justify-content: space-around;
+        border: 4px solid rgb(17, 57, 235);
+
+        P {
+          font-size: 20px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .otherRankContainer {
+    display: flex;
+    flex-direction: column;
+
+    .otherRank {
+      background-color: white;
+      margin: 20px 0;
+      display: flex;
+      justify-content: space-around;
+      P {
+        width: 200px;
+        vertical-align: center;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.loadingDot {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto;
+  padding: 10px;
+
+  .dot1 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    border-radius: 10px;
+    background-color: #fff;
+    transform: scale(0);
+    animation: dot 1.5s linear infinite;
+  }
+
+  .dot2 {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: -50px;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    border-radius: 10px;
+    background-color: #fff;
+    transform: scale(0);
+    animation: dot 1.5s linear infinite;
+    animation-delay: -0.1s;
+  }
+
+  .dot3 {
+    right: -50px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0px;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    border-radius: 10px;
+    background-color: #fff;
+    transform: scale(0);
+    animation: dot 1.5s linear infinite;
+    animation-delay: 0.1s;
+  }
+}
