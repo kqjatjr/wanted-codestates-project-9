@@ -3,11 +3,11 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Main from "src/components/Main/Main";
 import Menu from "src/components/Menu/Menu";
 import Profile from "../Profile/Profile";
+import Rank from "../Rank/Rank";
 import styles from "./Home.module.scss";
 
 const Home = () => {
   const [nickname, setNickname] = useState<string>();
-  const [currMenu, setCurrMenu] = useState("Home");
 
   const navigate = useNavigate();
 
@@ -19,7 +19,6 @@ const Home = () => {
     if (e.code === "Enter") {
       if (nickname?.trim().length) {
         setNickname("");
-        setCurrMenu("");
         navigate(`/user/${nickname}`);
       } else {
         alert("닉네임을 입력해 주세요!");
@@ -30,22 +29,24 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <Menu
-        currMenu={currMenu}
         onChangeInputValue={handleChangeInputValue}
         onSearchUser={handleSearchUser}
       />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Main
-              onChangeInputValue={handleChangeInputValue}
-              onSearchUser={handleSearchUser}
-            />
-          }
-        />
-        <Route path="/user/:nickname" element={<Profile />} />
-      </Routes>
+      <div className={styles.layout}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                onChangeInputValue={handleChangeInputValue}
+                onSearchUser={handleSearchUser}
+              />
+            }
+          />
+          <Route path="/user/:nickname" element={<Profile />} />
+          <Route path="/Rank" element={<Rank />} />
+        </Routes>
+      </div>
     </div>
   );
 };
