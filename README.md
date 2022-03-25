@@ -6,6 +6,8 @@
 
 ## 배포 주소
 
+https://dapper-crostata-47cad6.netlify.app/
+
 ## 제작 구현 리스트
 
 ### 메인 페이지
