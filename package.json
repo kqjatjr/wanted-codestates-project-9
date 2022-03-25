@@ -36,6 +36,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "https://dapper-crostata-47cad6.netlify.app/",
   "browserslist": {
     "production": [
       ">0.2%",
