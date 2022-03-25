@@ -123,7 +123,7 @@ const Profile = () => {
                 {mostChar ? (
                   <img
                     className={styles.mostChar}
-                    src={require(`../../store/metadata/character/${mostChar}.png`)}
+                    src={`${process.env.PUBLIC_URL}/img/character/${mostChar}.png`}
                     alt="많이한 캐릭터"
                   />
                 ) : (
@@ -261,7 +261,7 @@ const Profile = () => {
                   {(
                     <img
                       className={styles.kartImage}
-                      src={require(`../../store/metadata/kart/${match.player.kart}.png`)}
+                      src={`${process.env.PUBLIC_URL}/img/kart/${match.player.kart}.png`}
                       alt="카트 이미지"
                     />
                   ) ?? null}

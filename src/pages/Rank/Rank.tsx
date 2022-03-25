@@ -69,8 +69,11 @@ const filterMatchType = [
 
 const Rank = () => {
   const [currentFilter, setCurrentFilter] = useState(filterMatchType[0].id);
-  const { data: { matches } = { matches: [] }, isLoading } =
-    useGetAllMatchesListQuery(currentFilter ?? skipToken);
+  const {
+    data: { matches } = { matches: [] },
+    isLoading,
+    isError,
+  } = useGetAllMatchesListQuery(currentFilter ?? skipToken);
 
   const matchDatas = useAppSelector((state) => state.matches);
   const dispatch = useDispatch();
@@ -148,6 +151,10 @@ const Rank = () => {
 
   if (isLoading) {
     return <MainLoading />;
+  }
+
+  if (isError || matchDatas.isError) {
+    return <div>에러가 발생했습니다.</div>;
   }
 
   return (
