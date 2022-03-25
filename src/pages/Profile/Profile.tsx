@@ -1,4 +1,4 @@
-import { skipToken } from "@reduxjs/toolkit/query";
+import { skipToken, FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { useParams } from "react-router-dom";
 import {
   useGetUserAccessIdQuery,
@@ -33,12 +33,16 @@ const Profile = () => {
 
   const {
     data: userProfile,
-    isError: userProfileError,
+    isError: isUserProfileError,
     isLoading: userProfileLoading,
+    error: userProfileError,
   } = useGetUserAccessIdQuery(nickname ?? skipToken);
 
-  const { data: matchData, isLoading: isMatchLoading } =
-    useGetUserMatchesListQuery(userProfile?.accessId ?? skipToken);
+  const {
+    data: matchData,
+    isLoading: isMatchLoading,
+    isError: isMatchError,
+  } = useGetUserMatchesListQuery(userProfile?.accessId ?? skipToken);
 
   const onClickFilter = (type: string) => {
     setCurrFilterType(type);
@@ -88,9 +92,19 @@ const Profile = () => {
   const winAnimationCount = useCountUp(winPercent, 10);
   const retireAnimationCount = useCountUp(retirePercent, 10);
 
-  if (userProfileError) {
+  if (
+    userProfileError &&
+    "status" in userProfileError &&
+    userProfileError.status === 404
+  ) {
     return (
       <div className={styles.isUserProfileError}>일치하는 유저가 없습니다.</div>
+    );
+  }
+
+  if (isUserProfileError || isMatchError) {
+    return (
+      <div className={styles.isUserProfileError}>에러가 발생했습니다.</div>
     );
   }
 
