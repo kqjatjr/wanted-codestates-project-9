@@ -1,15 +1,17 @@
+import { useMatch, useResolvedPath } from "react-router-dom";
 import CustomLink from "../CustomLink/CustomLink";
 import styles from "./Menu.module.scss";
 
-const menuList: string[] = ["Home", "Rank", "Track"];
+const menuList: string[] = ["Home", "Rank"];
 
 type TProp = {
-  currMenu: string;
   onSearchUser: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   onChangeInputValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Menu = ({ currMenu, onSearchUser, onChangeInputValue }: TProp) => {
+const Menu = ({ onSearchUser, onChangeInputValue }: TProp) => {
+  let resolved = useResolvedPath("/");
+  let match = useMatch({ path: resolved.pathname, end: true });
   return (
     <div className={styles.container}>
       <ul className={styles.menuList}>
@@ -28,19 +30,17 @@ const Menu = ({ currMenu, onSearchUser, onChangeInputValue }: TProp) => {
             </li>
           );
         })}
-        {currMenu !== "홈" && (
-          <li>
-            <div className={styles.inputContainer}>
-              <input
-                className={styles.input}
-                onChange={onChangeInputValue}
-                onKeyPress={onSearchUser}
-                placeholder="유저 닉네임을 입력후 Enter를 눌러주세요"
-              />
-            </div>
-          </li>
-        )}
       </ul>
+      {!match && (
+        <div className={styles.inputContainer}>
+          <input
+            className={styles.input}
+            onChange={onChangeInputValue}
+            onKeyPress={onSearchUser}
+            placeholder="유저 닉네임을 입력후 Enter를 눌러주세요"
+          />
+        </div>
+      )}
     </div>
   );
 };
