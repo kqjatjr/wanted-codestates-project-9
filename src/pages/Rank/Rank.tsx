@@ -154,7 +154,9 @@ const Rank = () => {
   }
 
   if (isError || matchDatas.isError) {
-    return <div>에러가 발생했습니다.</div>;
+    return (
+      <div className={styles.isUserProfileError}>에러가 발생했습니다.</div>
+    );
   }
 
   return (
