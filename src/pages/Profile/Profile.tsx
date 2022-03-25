@@ -1,4 +1,4 @@
-import { skipToken } from "@reduxjs/toolkit/dist/query";
+import { skipToken } from "@reduxjs/toolkit/query";
 import { useParams } from "react-router-dom";
 import {
   useGetUserAccessIdQuery,
@@ -6,12 +6,13 @@ import {
 } from "src/store/query/userProfileApi";
 import styles from "./Profile.module.scss";
 import { Kart } from "src/store/metadata/kart";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { gameType } from "src/store/metadata/gameType";
 import { track } from "src/store/metadata/track";
 import { TPlayer, TUserMatches } from "src/types/api";
 import MatchChart from "src/components/Chart/Chart";
-import classNames from "classnames";
+import { useCountUp } from "src/hooks/useCountUp";
+import MainLoading from "src/components/Loading/MainLoading";
 
 const countResult = (data: TUserMatches | undefined, target: string) => {
   return (
@@ -24,28 +25,6 @@ const countResult = (data: TUserMatches | undefined, target: string) => {
       return acc;
     }, 0) ?? 0
   );
-};
-
-const useCountUp = (value: number, interval: number) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let internalCount = 1;
-    const intervalId = setInterval(() => {
-      if (internalCount < value) {
-        setCount(internalCount);
-        internalCount++;
-      } else {
-        clearInterval(intervalId);
-      }
-    }, interval);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [value, interval]);
-
-  return count;
 };
 
 const Profile = () => {
@@ -116,13 +95,7 @@ const Profile = () => {
   }
 
   if (!matchData || isMatchLoading || userProfileLoading) {
-    return (
-      <div className={styles.loadingContainer}>
-        <div className={classNames(styles.loading, styles.loadingCircle)}>
-          <div></div>
-        </div>
-      </div>
-    );
+    return <MainLoading />;
   }
 
   const CharData = matchData.matches.reduce((acc, curr) => {
@@ -181,7 +154,7 @@ const Profile = () => {
                     "% 100%)",
                 }}
               >
-                <span className={styles.percent}>{winPercent}%</span>
+                <span className={styles.percent}>{winPercent.toFixed(0)}%</span>
               </div>
             </div>
             <div className={styles.retire}>
@@ -199,7 +172,9 @@ const Profile = () => {
                     "% 100%)",
                 }}
               >
-                <span className={styles.percent}>{retirePercent}%</span>
+                <span className={styles.percent}>
+                  {retirePercent.toFixed(0)}%
+                </span>
               </div>
             </div>
           </div>
@@ -263,27 +238,33 @@ const Profile = () => {
                   <p
                     className={styles.score}
                     style={
-                      match.player.matchRetired === "1"
+                      match.player.matchRetired === "1" ||
+                      !match.player.matchRank
                         ? { color: "red" }
                         : { color: "blue" }
                     }
                   >
                     {match.player.matchRetired === "1"
                       ? "리타이어"
+                      : !match.player.matchRank
+                      ? "탈주"
                       : match.player.matchRank + "등"}
                   </p>
-                  {match.player.matchRetired === "1" ? null : (
+                  {match.player.matchRetired === "1" ||
+                  !match.player.matchRank ? null : (
                     <p className={styles.playerCount}>/{match.playerCount}명</p>
                   )}
                 </div>
                 <p className={styles.trackType}>{track[match.trackId]}</p>
                 <div className={styles.kartContainer}>
                   <p className={styles.kartName}>{Kart[match.player.kart]}</p>
-                  <img
-                    className={styles.kartImage}
-                    src={require(`../../store/metadata/kart/${match.player.kart}.png`)}
-                    alt="카트 이미지"
-                  />
+                  {(
+                    <img
+                      className={styles.kartImage}
+                      src={require(`../../store/metadata/kart/${match.player.kart}.png`)}
+                      alt="카트 이미지"
+                    />
+                  ) ?? null}
                 </div>
               </div>
             );

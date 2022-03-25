@@ -1,12 +1,3 @@
-@keyframes loadingCircle {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes fadeInList {
   from {
     opacity: 0;
@@ -225,7 +216,7 @@
         font-weight: bold;
       }
       .trackType {
-        width: 300px;
+        width: 350px;
         display: flex;
         font-size: 20px;
         font-weight: bold;
@@ -258,6 +249,8 @@
         justify-content: center;
         .kartName {
           font-size: 20px;
+          width: 200px;
+          text-align: center;
           padding: 0 10px;
           font-weight: bold;
         }
@@ -285,47 +278,4 @@
   text-align: center;
   background-color: rgb(16, 107, 243);
   margin: 0 auto;
-}
-
-.isLoading {
-  padding-top: 65px;
-  height: 1000px;
-  width: auto;
-  font-size: 200px;
-  color: white;
-  text-align: center;
-  background-color: rgb(16, 107, 243);
-  margin: 0 auto;
-}
-
-.loadingContainer {
-  background-color: rgb(9, 106, 252);
-  min-height: calc(100vh - 48px);
-  background-image: url("../../store/metadata/loading/loading.png");
-  background-repeat: no-repeat;
-  background-size: 80px;
-  background-position: 50% 50%;
-  .loading {
-    position: relative;
-    width: 96px;
-    height: 96px;
-    margin: 0 auto;
-    padding: 10px;
-  }
-
-  .loadingCircle {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 76px;
-    height: 76px;
-    margin: auto;
-    border: 10px solid;
-    border-color: rgba(255, 255, 255, 1) rgba(255, 255, 255, 0.3)
-      rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: loadingCircle 1s linear infinite;
-  }
 }
